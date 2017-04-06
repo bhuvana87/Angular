@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" ng-app="calculate">
+<head>
+  <meta charset="UTF-8">
+  <title>Basics</title>
+  <script src="https://code.angularjs.org/snapshot/angular.min.js"></script>  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css" /> 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="js/basics2.js"></script>
+</head>
+<body>
+<div class="main" ng-controller="CalcController as calc"> 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div>
+          <label>Quantity</label>
+          <input type="number" ng-model="calc.qty" class="form-control"/> 
+        </div>
+        <br>
+        <div>
+          <label>Cost</label>
+            <div class="row">
+              <div class="col-md-8"><input type="number" ng-model="calc.cost"  class="form-control"/></div>
+              <div class="col-md-4">
+                <select ng-model="calc.inCurr">
+                  <option ng-repeat="c in calc.currencies">{{c}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <h3>Total 
+                  <span class="label label-success">
+                    {{ calc.total(c) | currency:c }}
+                  </span>
+                </h3>
+              </div><br>
+              <div class="col-md-4 text-right">
+                <button class="btn btn-primary" ng-click="calc.pay()">Pay</button>
+              </div>
+            </div>
+        </div><br><br>
+        <div class="alert alert-success alert-dismissable paymsg" id="paymntMsg">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          Thanks for your payment!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
